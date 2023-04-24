@@ -25,6 +25,17 @@ namespace MusicaApi.Controllers
             return Ok(canciones);
         }
 
+        [HttpGet("seleccionar/{id}")]
+        public IActionResult GetById(int id)
+        {
+            var c = cancionesRepository.Get(id);
+            if (c==null)
+            {
+                return NotFound("Esa canción no existe.");
+            }
+            return Ok(c);
+        }
+
         [HttpPost("insertar")]
         public IActionResult Post(Canciones c)
         {
